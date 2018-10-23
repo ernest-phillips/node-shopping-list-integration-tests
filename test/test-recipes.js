@@ -52,8 +52,11 @@ describe("Recipes", function() {
         // because we create three items on app load
         expect(res.body.length).to.be.at.least(1);
         // each item should be an object with key/value pairs
+<<<<<<< HEAD
         // for `name` and `ingredients`.
         const expectedKeys = ["name", "ingredients"];
+=======
+       
         res.body.forEach(function(item) {
           expect(item).to.be.a("object");
           expect(item).to.include.keys(expectedKeys);
@@ -66,16 +69,22 @@ describe("Recipes", function() {
   //  2. inspect response object and prove it has right
   //  status code and that the returned object has an `id`
   it("should add an item on POST", function() {
+<<<<<<< HEAD
     const newItem = { name: "chocolate cake", ingredients:['cocoa','eggs','butter'] };
     return chai
       .request(app)
       .post("/recipes")
+=======
+   
       .send(newItem)
       .then(function(res) {
         expect(res).to.have.status(201);
         expect(res).to.be.json;
         expect(res.body).to.be.a("object");
+<<<<<<< HEAD
         expect(res.body).to.include.keys("name", "ingredients");
+=======
+ 
         expect(res.body.id).to.not.equal(null);
         // response should be deep equal to `newItem` from above if we assign
         // `id` to it from `res.body.id`
@@ -99,7 +108,9 @@ describe("Recipes", function() {
     // we can make a second, PUT call to the app.
     const updateData = {
       name: "foo",
-      ingredients: ["cheese","broccoli"]
+<<<<<<< HEAD
+      ingredients: ["cheese","broccoli"]=======
+     
     };
 
     return (
@@ -116,10 +127,17 @@ describe("Recipes", function() {
           // this approach cleaner and easier to read and reason about.
           return chai
             .request(app)
+<<<<<<< HEAD
             .put(`/recipes/${updateData.id}`)
             .send(updateData);
         })
         // prove that the PUT request has right status code ******************
+=======
+            .put(`/shopping-list/${updateData.id}`)
+            .send(updateData);
+        })
+        // prove that the PUT request has right status code
+>>>>>>> master
         // and returns updated item
         .then(function(res) {
           expect(res).to.have.status(200);
@@ -142,7 +160,9 @@ describe("Recipes", function() {
         // to delete
         .get("/recipes")
         .then(function(res) {
+<<<<<<< HEAD
           return chai.request(app).delete(`/recipes/${res.body[0].id}`);
+
         })
         .then(function(res) {
           expect(res).to.have.status(204);
