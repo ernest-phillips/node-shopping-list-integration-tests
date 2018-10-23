@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy: shrouded-beyond-16634
+  provider: heroku
+  api_key:
+    secure: ZuoYIGApaxNC6RuNLelI81LtypFXZNwPkPWx7F7zCibkS3xIAh+ppJjSoOrcUBNuZa54ysOj9x2JeafgpHyaLhc2rFxIxDnh/J7+FipXuHyC2VIPjzGWKiVG9d+yMd184qSlrETfQV/VJgu9fuZlvvelurPwZdaMqIwuhJGMDNiGWFEyQ3aINROf5hEjcVK5GHRU3yvVKII9WHpOhdB2NS6daCsbkbhEbWupvH/Rn9+Joccrv9atTE2mK8qvOghLhAApK0hg4nEjv1tsFmNuA9GOwbUdht9C/SjS5ItbIvAd4WkEXYX4eBzTJ+7ELR+uMOCfq21T7mDUr65ICzTYWuV2Mwf5+mFmjo/kK4Pw/IljX7Ryg8rp+TIL4CnhE4g4V4NnjKoy1qquKewM1YCaXilUkb1QAhi9JqsiQA5/aBCZONtan8aHKLDDOQeRPeH6wc3U+VwNmoLPh2p/nFwmO07xlMj8BUend8Iz/yjSYgXTeSueHwr4VB/GEK1ScPzrCuFQ8/52bXnMm+0kOycCNi+6YuIEBHFXx0duiiV2L9w7H1P5NvJmfTjRAJy1udVx4F9ByzKF9zadQSIX9dpc2/Nwhf2+cxGS+mDOTag6J2SIYoSJ4HKEvC2SmvWLm6oCY5yA1FvnSv4zErC8c3cpTI2/byjvoD/pragZtL/2fFc=
+  app: shrouded-beyond-16634
+  on:
+    repo: ernest-phillips/node-shopping-list-integration-tests
