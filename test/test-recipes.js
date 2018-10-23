@@ -52,10 +52,10 @@ describe("Recipes", function() {
         // because we create three items on app load
         expect(res.body.length).to.be.at.least(1);
         // each item should be an object with key/value pairs
-<<<<<<< HEAD
+
         // for `name` and `ingredients`.
         const expectedKeys = ["name", "ingredients"];
-=======
+
        
         res.body.forEach(function(item) {
           expect(item).to.be.a("object");
@@ -69,21 +69,21 @@ describe("Recipes", function() {
   //  2. inspect response object and prove it has right
   //  status code and that the returned object has an `id`
   it("should add an item on POST", function() {
-<<<<<<< HEAD
+
     const newItem = { name: "chocolate cake", ingredients:['cocoa','eggs','butter'] };
     return chai
       .request(app)
       .post("/recipes")
-=======
+
    
       .send(newItem)
       .then(function(res) {
         expect(res).to.have.status(201);
         expect(res).to.be.json;
         expect(res.body).to.be.a("object");
-<<<<<<< HEAD
+
         expect(res.body).to.include.keys("name", "ingredients");
-=======
+
  
         expect(res.body.id).to.not.equal(null);
         // response should be deep equal to `newItem` from above if we assign
@@ -109,7 +109,7 @@ describe("Recipes", function() {
     const updateData = {
       name: "foo",
 
-      ingredients: ["cheese","broccoli"]=======
+      ingredients: ["cheese","broccoli"]
      
     };
 
