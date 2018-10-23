@@ -71,51 +71,30 @@ describe("Recipes", function() {
   it("should add an item on POST", function() {
 
     const newItem = { name: "chocolate cake", ingredients:['cocoa','eggs','butter'] };
-    return chai
-      .request(app)
-      .post("/recipes")
-
-   
+    return chai.request(app)
+      .post("/recipes")   
       .send(newItem)
       .then(function(res) {
-        expect(res).to.have.status(201);
-        expect(res).to.be.json;
-        expect(res.body).to.be.a("object");
-
-        expect(res.body).to.include.keys("name", "ingredients");
-
- 
-        expect(res.body.id).to.not.equal(null);
-        // response should be deep equal to `newItem` from above if we assign
-        // `id` to it from `res.body.id`
-        expect(res.body).to.deep.equal(
-          Object.assign(newItem, { id: res.body.id })
-        );
+        res.should.have.status(201);
+        res.should.be.json;
+        res.should.be.a('object');
+        res.body.to.include.keys("id","name", "ingredients");
+    res.body.name.should.equal(newItem.name);
+    res.body.ingredients.should.be.a('array');
+//what is going on here        res.body.ingredients.should.include.members(newItem.ingredients);
+        
       });
   });
 
-  // test strategy:
-  //  1. initialize some update data (we won't have an `id` yet)
-  //  2. make a GET request so we can get an item to update
-  //  3. add the `id` to `updateData`
-  //  4. Make a PUT request with `updateData`
-  //  5. Inspect the response object to ensure it
-  //  has right status code and that we get back an updated
-  //  item with the right data in it.
+
   it("should update items on PUT", function() {
-    // we initialize our updateData here and then after the initial
-    // request to the app, we update it with an `id` property so
-    // we can make a second, PUT call to the app.
+    
     const updateData = {
       name: "foo",
-
-      ingredients: ["cheese","broccoli"]
-     
+      ingredients: ["bizz","bang"]     
     };
 
-    return (
-      chai
-        .request(app)
+    return (chai.request(app)
         // first have to get so we have an idea of object to update
         .get("/recipes")
         .then(function(res) {
@@ -125,48 +104,35 @@ describe("Recipes", function() {
           // that we could have used a nested callback here instead of
           // returning a promise and chaining with `then`, but we find
           // this approach cleaner and easier to read and reason about.
-          return chai
-            .request(app)
-
+          return chai.request(app)
             .put(`/recipes/${updateData.id}`)
             .send(updateData);
         })
-        // prove that the PUT request has right status code ******************
-
-            .put(`/shopping-list/${updateData.id}`)
-            .send(updateData);
-        })
         // prove that the PUT request has right status code
-
         // and returns updated item
         .then(function(res) {
-          expect(res).to.have.status(200);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a("object");
-          expect(res.body).to.deep.equal(updateData);
-        })
-    );
+          res.should.have.status(204)
+        });
+    
   });
 
   // test strategy:
-  //  1. GET shopping list items so we can get ID of one
+  //  1. GET recipe items so we can get ID of one
   //  to delete.
   //  2. DELETE an item and ensure we get back a status 204
   it("should delete items on DELETE", function() {
-    return (
-      chai
-        .request(app)
+    return (chai.request(app)
         // first have to get so we have an `id` of item
         // to delete
         .get("/recipes")
         .then(function(res) {
 
-          return chai.request(app).delete(`/recipes/${res.body[0].id}`);
+          return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`);
 
         })
         .then(function(res) {
           expect(res).to.have.status(204);
-        })
-    );
+        });    
   });
 });
