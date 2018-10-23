@@ -108,7 +108,7 @@ describe("Recipes", function() {
     // we can make a second, PUT call to the app.
     const updateData = {
       name: "foo",
-<<<<<<< HEAD
+
       ingredients: ["cheese","broccoli"]=======
      
     };
@@ -127,17 +127,17 @@ describe("Recipes", function() {
           // this approach cleaner and easier to read and reason about.
           return chai
             .request(app)
-<<<<<<< HEAD
+
             .put(`/recipes/${updateData.id}`)
             .send(updateData);
         })
         // prove that the PUT request has right status code ******************
-=======
+
             .put(`/shopping-list/${updateData.id}`)
             .send(updateData);
         })
         // prove that the PUT request has right status code
->>>>>>> master
+
         // and returns updated item
         .then(function(res) {
           expect(res).to.have.status(200);
@@ -160,7 +160,7 @@ describe("Recipes", function() {
         // to delete
         .get("/recipes")
         .then(function(res) {
-<<<<<<< HEAD
+
           return chai.request(app).delete(`/recipes/${res.body[0].id}`);
 
         })
